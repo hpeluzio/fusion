@@ -152,3 +152,5 @@ DEFAULT_FROM_EMAIL = 'contato@fusion.com.br'
 # the SMTP server, and the EMAIL_USE_TLS and EMAIL_USE_SSL settings control whether a secure 
 # connection is used.
 
+
+LOGOUT_REDIRECT_URL = 'index'
