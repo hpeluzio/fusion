@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
+import dj_database_url
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -25,7 +26,7 @@ SECRET_KEY = 'p#z5xc+jsery71a(3hvtr#gpv9ziu0qwcxx^wvh7lrdse#)@-d'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -74,16 +75,21 @@ WSGI_APPLICATION = 'fusion.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'fusion',
+#         'USER': 'postgres',
+#         'PASSWORD': 'postgres',
+#         'HOST': '127.0.0.1',
+#         'PORT': '5432',
+#     }
+# }
+
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'fusion',
-        'USER': 'postgres',
-        'PASSWORD': 'postgres',
-        'HOST': '127.0.0.1',
-        'PORT': '5432',
-    }
+    'default': dj_database_url.config()
 }
+
 
 
 # Password validation
@@ -126,3 +132,23 @@ STATIC_URL = '/static/'
 MEDIA_URL = 'media/'
 STATIC_ROOT = Path.joinpath(BASE_DIR, 'staticfiles')
 MEDIA_ROOT = Path.joinpath(BASE_DIR, 'media')
+
+
+# Configs de e-mail DEV (Console)
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+# Configs de e-mail PROD
+"""
+EMAIL_HOST = 'localhost'
+EMAIL_HOST_USER = 587
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_PASSWORD = 'your_password'
+DEFAULT_FROM_EMAIL = 'contato@fusion.com.br'
+"""
+
+# Mail is sent using the SMTP host and port specified in the EMAIL_HOST and EMAIL_PORT settings. 
+# The EMAIL_HOST_USER and EMAIL_HOST_PASSWORD settings, if set, are used to authenticate to 
+# the SMTP server, and the EMAIL_USE_TLS and EMAIL_USE_SSL settings control whether a secure 
+# connection is used.
+
